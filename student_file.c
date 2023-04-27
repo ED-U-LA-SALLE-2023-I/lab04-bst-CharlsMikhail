@@ -70,6 +70,28 @@ void inorder_recorrido(struct node* raiz) {
         printf("%i \n", raiz->value);
         inorder_recorrido(raiz->right);
         //POSTORDEN
+    }
+}
+
+void postorder_recorrido(struct node * raiz) {
+    if(raiz != NULL) {
+        //PREORDEN
+        inorder_recorrido(raiz->left);
+        //INORDEN
+        inorder_recorrido(raiz->right);
+        //POSTORDEN
+        printf("%i \n", raiz->value);
+    }
+}
+
+void preorder_recorrido(struct node * raiz) {
+    if(raiz != NULL) {
+        //PREORDEN
+        printf("%i \n", raiz->value);
+        inorder_recorrido(raiz->left);
+        //INORDEN
+        inorder_recorrido(raiz->right);
+        //POSTORDEN
         
     }
 }
