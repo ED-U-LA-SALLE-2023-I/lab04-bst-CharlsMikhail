@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct node {
-    int value;
+    char value;
     struct node *left;
     struct node *right;
 };
@@ -10,7 +10,7 @@ struct node {
 struct node *root = NULL;
 
 // función: insert, agrega elementos en un árbol con puntero inicial root
-void insert(int data) {
+void insert(char data) {
     struct node *tempNode = (struct node*) malloc(sizeof(struct node));
     struct node *actual;
     struct node *padre;
@@ -66,20 +66,28 @@ void inorder_recorrido(struct node* raiz) {
     if(raiz != NULL) {
         //PREORDEN
         inorder_recorrido(raiz->left);
-        printf("%i \n", raiz->value); //INORDEN
+        //INORDEN
+        printf("%i \n", raiz->value);
         inorder_recorrido(raiz->right);
         //POSTORDEN
+        
     }
 }
 
+char* bst_fun(char* nodes) {
+    char* result;
+
+    return result;
+}
+
 int main() {
-   int i;
-   int array[9] = {5, 28, 24, 45, 30, 60, 52, 98, 50};
+   
+    char* entrada[] = {'50','30','24','5','28','45','98','52','60'};
+    char* salida = bst_fun(entrada);
 
-   for(i = 0; i < 7; i++) {
-        insert(array[i]);
-   }
-
+    int array[9] = {50,30,24,5,28,45,98,52,60};
+    for(int i = 0; i < 7; i++) {
+    insert(array[i]);
     printf("\nInorder: \n");
     inorder_recorrido(root);
 
