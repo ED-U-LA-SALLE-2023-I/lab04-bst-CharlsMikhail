@@ -9,7 +9,7 @@ struct node {
 };
 
 struct node *root = NULL;
-//char result[100];
+//int* result;
 //int indice = 0;
 
 // función: insert, agrega elementos en un árbol con puntero inicial root
@@ -83,7 +83,7 @@ void postorder_recorrido(struct node * raiz) { //Type 2
         //INORDEN
         postorder_recorrido(raiz->right);
         //POSTORDEN
-        printf("%i \n", raiz->value);
+        printf("%i, ", raiz->value);
         //result[indice] = raiz->value;
         //indice++;
     }
@@ -101,32 +101,34 @@ void preorder_recorrido(struct node * raiz) {//Type 1
     }
 }
 
-/*void bst_fun(char* nodes) {
-    char* salida;
-    int size;
-    //Inserte los datos a el arbol - Con esto encontramos el arbol original
-    int* temp = parseCommaSeparatedString(char* nodes, &size);
+//Hago el cambio de char a int -> me parece que el cambio de char a int es a base de funciones ya establecidas en librerias o por defecto se tendria
+//que hacer un codigo con todas las posibles excepciones.
 
-    for(int i = 0; i < size; i++) {
-        insert(temp[i]);
+//volvi el bst_fun a void porque tenia la posibilida dde hacerlo de frente con la impresion enla consola del metodo postorder
+void bst_fun(int* nodes) {
+    for(int i = 0; i < 9; i++) {
+        insert(nodes[i]);
     }
-    //Hago el recorrido postorder
     postorder_recorrido(root);
-
-   // return salida;
-}*/
+   // return result;
+}
 
 int main() {
 
     int entrada[9] = {50,30,24,5,28,45,98,52,60};
+
     printf("\nRecorrido tipo 1: \n");
     for(int i = 0; i < 9; i++) {
-        printf("%i\n", entrada[i]);
-        insert(entrada[i]);
+        printf("%i, ", entrada[i]);
     }
 
-    printf("Recorrido tipo 2: \n");
-    postorder_recorrido(root);
+    printf("\nRecorrido tipo 2: \n");
+    bst_fun(entrada);
+
+    /*
+    for(int i = 0; i < 9; i++) {
+        printf("%i\n", result[i]);
+    }*/
 
     return 0;
 }
