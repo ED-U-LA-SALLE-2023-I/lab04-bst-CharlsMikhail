@@ -89,7 +89,7 @@ void preorder_recorrido(struct node * raiz) {
         //PREORDEN
         printf("%i \n", raiz->value);
         inorder_recorrido(raiz->left);
-        //INORDEN
+        //INORDEN: raiz
         inorder_recorrido(raiz->right);
         //POSTORDEN
         
@@ -98,20 +98,21 @@ void preorder_recorrido(struct node * raiz) {
 
 char* bst_fun(char* nodes) {
     char* result;
-
+    for(int i = 0; i < sizeof(nodes); i++) {
+        if(nodes[i] =! ',') {
+            insert(nodes[i]);
+        } 
+    }
     return result;
 }
 
 int main() {
    
-    char* entrada[] = {'50','30','24','5','28','45','98','52','60'};
+    char* entrada = "4,5,76,2";
+
     char* salida = bst_fun(entrada);
 
-    int array[9] = {50,30,24,5,28,45,98,52,60};
-    for(int i = 0; i < 7; i++) {
-    insert(array[i]);
-    printf("\nInorder: \n");
-    inorder_recorrido(root);
+    printf("Salida: %s", salida);
 
     return 0;
 }
