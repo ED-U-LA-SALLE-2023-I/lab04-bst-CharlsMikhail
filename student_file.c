@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct node {
     char value;
@@ -74,6 +75,8 @@ void inorder_recorrido(struct node* raiz) {
 }
 
 void postorder_recorrido(struct node * raiz) { //Type 2
+    char* result;
+    int i = 0;
     if(raiz != NULL) {
         //PREORDEN
         postorder_recorrido(raiz->left);
@@ -81,7 +84,10 @@ void postorder_recorrido(struct node * raiz) { //Type 2
         postorder_recorrido(raiz->right);
         //POSTORDEN
         printf("%c \n", raiz->value);
+        result[i] = raiz->value;
+        i++;
     }
+    return result;
 }
 
 void preorder_recorrido(struct node * raiz) {//Type 1
@@ -89,7 +95,7 @@ void preorder_recorrido(struct node * raiz) {//Type 1
         //PREORDEN
         printf("%c \n", raiz->value);
         preorder_recorrido(raiz->left);
-        //INORDEN: raiz
+        //INORDEN:
         preorder_recorrido(raiz->right);
         //POSTORDEN
         
@@ -98,13 +104,13 @@ void preorder_recorrido(struct node * raiz) {//Type 1
 
 char* bst_fun(char* nodes) {
     char* result;
-    //Inserte los datos a el arbol
+    //Inserte los datos a el arbol - Con esto encontramos el arbol original
     for(int i = 0; i < sizeof(nodes); i++) {
         if(nodes[i] =! ',') {
             insert(nodes[i]);
         } 
     }
-    postorder_recorrido(root);
+    result = postorder_recorrido(root);
     return result;
 }
 
