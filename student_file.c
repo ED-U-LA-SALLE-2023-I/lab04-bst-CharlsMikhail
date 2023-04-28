@@ -67,30 +67,30 @@ void inorder_recorrido(struct node* raiz) {
         //PREORDEN
         inorder_recorrido(raiz->left);
         //INORDEN
-        printf("%i \n", raiz->value);
+        printf("%c \n", raiz->value);
         inorder_recorrido(raiz->right);
         //POSTORDEN
     }
 }
 
-void postorder_recorrido(struct node * raiz) {
+void postorder_recorrido(struct node * raiz) { //Type 2
     if(raiz != NULL) {
         //PREORDEN
-        inorder_recorrido(raiz->left);
+        postorder_recorrido(raiz->left);
         //INORDEN
-        inorder_recorrido(raiz->right);
+        postorder_recorrido(raiz->right);
         //POSTORDEN
-        printf("%i \n", raiz->value);
+        printf("%c \n", raiz->value);
     }
 }
 
-void preorder_recorrido(struct node * raiz) {
+void preorder_recorrido(struct node * raiz) {//Type 1
     if(raiz != NULL) {
         //PREORDEN
-        printf("%i \n", raiz->value);
-        inorder_recorrido(raiz->left);
+        printf("%c \n", raiz->value);
+        preorder_recorrido(raiz->left);
         //INORDEN: raiz
-        inorder_recorrido(raiz->right);
+        preorder_recorrido(raiz->right);
         //POSTORDEN
         
     }
@@ -98,11 +98,13 @@ void preorder_recorrido(struct node * raiz) {
 
 char* bst_fun(char* nodes) {
     char* result;
+    //Inserte los datos a el arbol
     for(int i = 0; i < sizeof(nodes); i++) {
         if(nodes[i] =! ',') {
             insert(nodes[i]);
         } 
     }
+    postorder_recorrido(root);
     return result;
 }
 
