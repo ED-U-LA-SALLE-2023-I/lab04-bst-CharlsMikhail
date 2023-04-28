@@ -3,16 +3,17 @@
 #include <string.h>
 
 struct node {
-    char value;
+    int value;
     struct node *left;
     struct node *right;
 };
 
 struct node *root = NULL;
-char result[100];
+//char result[100];
+//int indice = 0;
 
 // función: insert, agrega elementos en un árbol con puntero inicial root
-void insert(char data) {
+void insert(int data) {
     struct node *tempNode = (struct node*) malloc(sizeof(struct node));
     struct node *actual;
     struct node *padre;
@@ -69,30 +70,29 @@ void inorder_recorrido(struct node* raiz) {
         //PREORDEN
         inorder_recorrido(raiz->left);
         //INORDEN
-        printf("%c \n", raiz->value);
+        printf("%i \n", raiz->value);
         inorder_recorrido(raiz->right);
         //POSTORDEN
     }
 }
 
 void postorder_recorrido(struct node * raiz) { //Type 2
-    int i = 0;
     if(raiz != NULL) {
         //PREORDEN
         postorder_recorrido(raiz->left);
         //INORDEN
         postorder_recorrido(raiz->right);
         //POSTORDEN
-        printf("%c \n", raiz->value);
-        result[i] = raiz->value;
-        i++;
+        printf("%i \n", raiz->value);
+        //result[indice] = raiz->value;
+        //indice++;
     }
 }
 
 void preorder_recorrido(struct node * raiz) {//Type 1
     if(raiz != NULL) {
         //PREORDEN
-        printf("%c \n", raiz->value);
+        printf("%i \n", raiz->value);
         preorder_recorrido(raiz->left);
         //INORDEN:
         preorder_recorrido(raiz->right);
@@ -101,25 +101,32 @@ void preorder_recorrido(struct node * raiz) {//Type 1
     }
 }
 
-char* bst_fun(char* nodes) {
+/*void bst_fun(char* nodes) {
     char* salida;
+    int size;
     //Inserte los datos a el arbol - Con esto encontramos el arbol original
-    for(int i = 0; i < sizeof(nodes); i++) {
-        if(nodes[i] =! ',') {
-            insert(nodes[i]);
-        } 
+    int* temp = parseCommaSeparatedString(char* nodes, &size);
+
+    for(int i = 0; i < size; i++) {
+        insert(temp[i]);
     }
+    //Hago el recorrido postorder
     postorder_recorrido(root);
-    return salida;
-}
+
+   // return salida;
+}*/
 
 int main() {
-   
-    char* entrada = "4,5,76,2";
 
-    char* salida = bst_fun(entrada);
+    int entrada[9] = {50,30,24,5,28,45,98,52,60};
+    printf("\nRecorrido tipo 1: \n");
+    for(int i = 0; i < 9; i++) {
+        printf("%i\n", entrada[i]);
+        insert(entrada[i]);
+    }
 
-    printf("Salida: %s", salida);
+    printf("Recorrido tipo 2: \n");
+    postorder_recorrido(root);
 
     return 0;
 }
