@@ -9,6 +9,7 @@ struct node {
 };
 
 struct node *root = NULL;
+char result[100];
 
 // función: insert, agrega elementos en un árbol con puntero inicial root
 void insert(char data) {
@@ -75,7 +76,6 @@ void inorder_recorrido(struct node* raiz) {
 }
 
 void postorder_recorrido(struct node * raiz) { //Type 2
-    char* result;
     int i = 0;
     if(raiz != NULL) {
         //PREORDEN
@@ -87,7 +87,6 @@ void postorder_recorrido(struct node * raiz) { //Type 2
         result[i] = raiz->value;
         i++;
     }
-    return result;
 }
 
 void preorder_recorrido(struct node * raiz) {//Type 1
@@ -103,15 +102,15 @@ void preorder_recorrido(struct node * raiz) {//Type 1
 }
 
 char* bst_fun(char* nodes) {
-    char* result;
+    char* salida;
     //Inserte los datos a el arbol - Con esto encontramos el arbol original
     for(int i = 0; i < sizeof(nodes); i++) {
         if(nodes[i] =! ',') {
             insert(nodes[i]);
         } 
     }
-    result = postorder_recorrido(root);
-    return result;
+    postorder_recorrido(root);
+    return salida;
 }
 
 int main() {
